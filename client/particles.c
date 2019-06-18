@@ -21,7 +21,7 @@
 #include "shapes.h"
 
 // ~55 seems to be the limit before jankiness kicks in
-#define NUM_PARTICLES 50
+#define NUM_PARTICLES 64
 
 typedef struct particle {
 	int x, y;
@@ -61,9 +61,9 @@ void initParticles(int w, int h) {
 
 void paintBG(int w, int h) {
 	if (!showTrails)
-		return Background(0, 0, 0);
+		return Background(255, 255, 255);
 
-	Fill(0, 0, 0, 0.3);
+	Fill(255, 255, 255, 0.45);
 	Rect(0, 0, w, h);
 }
 
@@ -76,7 +76,7 @@ void draw(int w, int h) {
 	for (i = 0; i < NUM_PARTICLES; i++) {
 		p = &particles[i];
 
-		Fill(p->r, p->g, p->b, 1.0);
+		Fill(p->r, p->g, p->b, 0.6);
 		Circle(p->x, p->y, p->radius);
 
 		// Apply the velocity
@@ -169,10 +169,9 @@ int main(int argc, char **argv) {
 		draw(w, h);
 
 		// NOTE: Consider a `usleep()` in here to not tie up the CPU if you intend serious use
-
+		usleep(2000);
 		// Change launch direction every 100 draws
-		i++;
-		if (alternate && i == 100) {
+		if (alternate && i++ == 100) {
 			directionRTL = directionRTL ? 0 : 1;
 			i = 0;
 		}
