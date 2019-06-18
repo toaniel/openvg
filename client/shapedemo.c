@@ -42,63 +42,60 @@ void grid(VGfloat x, VGfloat y, int n, int w, int h) {
 		Line(x, iy, x + w, iy);
 	}
 }
+
 // gradient demos linear and radial gradients
 void gradient(int width, int height) {
 	VGfloat x1, y1, x2, y2, cx, cy, fx, fy, r;
-	VGfloat w = (VGfloat)width;
-	VGfloat h = (VGfloat)height;
-	VGfloat dotcolor[4] = {0, 0, 0, 0.3};
-	
-	
+	VGfloat w = (VGfloat) width;
+	VGfloat h = (VGfloat) height;
+	VGfloat dotcolor[4] = { 0, 0, 0, 0.3 };
+
 	VGfloat stops[] = {
 		0.0, 1.0, 1.0, 1.0, 1.0,
 		0.5, 0.5, 0.5, 0.5, 1.0,
 		1.0, 0.0, 0.0, 0.0, 1.0
 	};
-				
-	
-	x1 = w/8;
-	x2 = (w*3)/8;
-	y1 = h/3;
-	y2 = (h*2)/3;
-	cx = (w*3)/4;
-	cy = (h/2);
-	r = (x2-x1);
-	fx = cx + (r/4);
-	fy = cy + (r/4);
+
+	x1 = w / 8;
+	x2 = (w * 3) / 8;
+	y1 = h / 3;
+	y2 = (h * 2) / 3;
+	cx = (w * 3) / 4;
+	cy = (h / 2);
+	r = (x2 - x1);
+	fx = cx + (r / 4);
+	fy = cy + (r / 4);
 	Start(w, h);
 	Background(128, 128, 128);
-	
 
 	FillLinearGradient(x1, y1, x2, y2, stops, 3);
-	Rect(x1, y1, x2-x1, y2-y1);
+	Rect(x1, y1, x2 - x1, y2 - y1);
 	FillRadialGradient(cx, cy, fx, fy, r, stops, 3);
 	Circle(cx, cy, r);
-	
+
 	RGBA(.5, 0, 0, 0.3, dotcolor);
 	setfill(dotcolor);
 	Circle(x1, y1, 10);
 	Circle(x2, y2, 10);
 	Circle(cx, cy, 10);
-	Circle(cx+r/2, cy, 10);
+	Circle(cx + r / 2, cy, 10);
 	Circle(fx, fy, 10);
-	
-	RGB(0,0,0,dotcolor);
+
+	RGB(0, 0, 0, dotcolor);
 	setfill(dotcolor);
-	TextMid(x1, y1-20, "(x1, y1)", SansTypeface, 18);
-	TextMid(x2, y2+10, "(x2, y2)", SansTypeface, 18);
+	TextMid(x1, y1 - 20, "(x1, y1)", SansTypeface, 18);
+	TextMid(x2, y2 + 10, "(x2, y2)", SansTypeface, 18);
 	TextMid(cx, cy, "(cx, cy)", SansTypeface, 18);
 	TextMid(fx, fy, "(fx, fy)", SansTypeface, 18);
-	TextEnd(cx+(r/2)+20, cy, "r", SansTypeface, 18);
-	
-	
-	TextMid(x1+((x2-x1)/2), h/6, "Linear Gradient", SansTypeface, 36);
-	TextMid(cx, h/6, "Radial Gradient", SansTypeface, 36);
-	
-	
+	TextEnd(cx + (r / 2) + 20, cy, "r", SansTypeface, 18);
+
+	TextMid(x1 + ((x2 - x1) / 2), h / 6, "Linear Gradient", SansTypeface, 36);
+	TextMid(cx, h / 6, "Radial Gradient", SansTypeface, 36);
+
 	End();
 
 }
+
 // makepi draws the Raspberry Pi
 void makepi(VGfloat x, VGfloat y, int w, int h) {
 	// dimensions
@@ -572,15 +569,15 @@ void sunearth(int w, int h) {
 
 // advert is an ad for the package 
 void advert(int w, int h) {
-	VGfloat y = h/4;
+	VGfloat y = h / 4;
 	int fontsize = (w * 4) / 100;
 	char *s = "github.com/ajstarks/openvg";
 	char *a = "ajstarks@gmail.com";
-	int imw = 110, imh = 110, rw = w/4, rh = (rw*2/3);
+	int imw = 110, imh = 110, rw = w / 4, rh = (rw * 2 / 3);
 	VGfloat tw = TextWidth(s, SansTypeface, fontsize);
 
 	Start(w, h);
-	makepi((w/2) - (rw/2), h/2, rw, rh);
+	makepi((w / 2) - (rw / 2), h / 2, rw, rh);
 	Fill(128, 0, 0, 1);
 	Text(w / 2 - (tw / 2), y - (fontsize / 4), s, SansTypeface, fontsize);
 	y -= 100;
@@ -611,22 +608,23 @@ void demo(int w, int h, int sec) {
 	sleep(sec);
 	raspi(w, h, "The Raspberry Pi");
 	sleep(sec);
-	gradient(w,h);
+	gradient(w, h);
 	sleep(sec);
 	advert(w, h);
 }
 
 // wait for a specific character 
 void waituntil(int endchar) {
-    int key;
+	int key;
 
-    for (;;) {
-        key = getchar();
-        if (key == endchar || key == '\n') {
-            break;
-        }
-    }
+	for (;;) {
+		key = getchar();
+		if (key == endchar || key == '\n') {
+			break;
+		}
+	}
 }
+
 // main initializes the system and shows the picture. 
 // Exit and clean up when you hit [RETURN].
 int main(int argc, char **argv) {
@@ -648,11 +646,11 @@ int main(int argc, char **argv) {
 		} else if (strncmp(argv[1], "fontsize", 8) == 0) {
 			fontrange(w, h);
 		} else if (strncmp(argv[1], "advert", 6) == 0) {
-			advert(w,h);
+			advert(w, h);
 		} else if (strncmp(argv[1], "raspi", 5) == 0) {
 			raspi(w, h, "The Raspberry Pi");
 		} else if (strncmp(argv[1], "gradient", 8) == 0) {
-			gradient(w,h);
+			gradient(w, h);
 		} else {
 			restoreterm();
 			fprintf(stderr, usage, progname);

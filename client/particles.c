@@ -139,8 +139,8 @@ void setOptions(int argc, char **argv) {
 			directionRTL = 0;
 			printf("Displaying in left-to-right mode\n");
 		}
-		if (option == 'g' && i+1 < argc) {
-			gravity = atof(argv[i+1]);
+		if (option == 'g' && i + 1 < argc) {
+			gravity = atof(argv[i + 1]);
 			printf("Gravity set to %.2f\n", gravity);
 		}
 	}
