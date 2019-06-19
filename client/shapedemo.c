@@ -381,10 +381,12 @@ void refcard(int width, int height) {
 	sx = width * 0.10;
 
 	Fill(128, 0, 0, 1);
-	Stroke(0, 20, 0, 0.5);	// Set stroke color and transparency
+	Stroke(80, 200, 0, 1);	// Set stroke color and transparency
 	StrokeWidth(3);			// Set stroke width
 	TextEnd(width - 20, height / 2, "OpenVG on the Raspberry Pi", SansTypeface, fontsize + (fontsize / 2));
-	Fill(0, 0, 0, 1);
+	Stroke(0, 0, 0, 1);	// Set stroke color and transparency
+	StrokeWidth(0.5);			// Set stroke width
+	Fill(120, 120, 180, 1);
 	for (i = 0; i < ns; i++) {
 		Text(sx + sw + sw / 2, sy, shapenames[i], SansTypeface, fontsize);
 		sy -= sh * spacing;
