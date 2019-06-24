@@ -51,9 +51,9 @@ void gradient(int width, int height) {
 	VGfloat dotcolor[4] = { 0, 0, 0, 0.3 };
 
 	VGfloat stops[] = {
-		0.0, 1.0, 1.0, 1.0, 1.0,
-		0.5, 0.5, 0.5, 0.5, 1.0,
-		1.0, 0.0, 0.0, 0.0, 1.0
+		0.0, 1, 0, 0, 1.0,
+		0.5, 0, 1, 0, 1.0,
+		1.0, 0, 0, 1, 1.0
 	};
 
 	x1 = w / 8;
@@ -408,7 +408,7 @@ void refcard(int width, int height) {
 	sy -= sh * spacing;
 
 	StrokeWidth(1);
-	Stroke(204, 204, 204, 1);
+	Stroke(180, 180, 18, 1);
 	Line(sx, sy, ex, sy);
 	coordpoint(sx, sy, dotsize, shapecolor);
 	coordpoint(ex, sy, dotsize, shapecolor);
