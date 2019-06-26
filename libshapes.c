@@ -455,8 +455,6 @@ unsigned char *next_utf8_char(unsigned char *utf8, int *codepoint) {
 // derived from http://web.archive.org/web/20070808195131/http://developer.hybrid.fi/font2openvg/renderFont.cpp.txt
 void Text(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 	VGfloat size = (VGfloat) pointsize, xx = x, mm[9];
-	VGfloat strk = vgGetf(VG_STROKE_LINE_WIDTH);
-	vgSetf(VG_STROKE_LINE_WIDTH, strk / size); // scale
 	vgGetMatrix(mm);
 	int character;
 	unsigned char *ss = (unsigned char *)s;
@@ -475,11 +473,10 @@ void Text(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 		};
 		vgLoadMatrix(mm);
 		vgMultMatrix(mat);
-		vgDrawPath(f.Glyphs[glyph], VG_FILL_PATH | VG_STROKE_PATH);
+		vgDrawPath(f.Glyphs[glyph], VG_FILL_PATH);
 		xx += size * f.GlyphAdvances[glyph] / 65536.0f;
 	}
 	vgLoadMatrix(mm);
-	vgSetf(VG_STROKE_LINE_WIDTH, strk); // descale
 }
 
 // TextWidth returns the width of a text string at the specified font and size.

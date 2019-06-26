@@ -364,29 +364,15 @@ void refcard(int width, int height) {
 	};
 	VGfloat shapecolor[4];
 	RGB(202, 225, 255, shapecolor);
-	
-	VGfloat top = height * .95, 
-		sx = 500, 
-		sy = top, 
-		sw = width * .05, 
-		sh = height * .045, 
-		dotsize = 7, 
-		spacing = 2.0;
+	VGfloat top = height * .95, sx = 500, sy = top, sw = width * .05, sh = height * .045, dotsize = 7, spacing = 2.0;
 
-	int i, 
-		ns = sizeof(shapenames) / sizeof(char *), 
-		fontsize = height * .033;
-		
+	int i, ns = sizeof(shapenames) / sizeof(char *), fontsize = height * .033;
 	Start(width, height);
 	sx = width * 0.10;
 
 	Fill(128, 0, 0, 1);
-	Stroke(80, 200, 0, 1);	// Set stroke color and transparency
-	StrokeWidth(3);			// Set stroke width
 	TextEnd(width - 20, height / 2, "OpenVG on the Raspberry Pi", SansTypeface, fontsize + (fontsize / 2));
-	Stroke(0, 0, 0, 1);	// Set stroke color and transparency
-	StrokeWidth(0.5);			// Set stroke width
-	Fill(120, 120, 180, 1);
+	Fill(0, 0, 0, 1);
 	for (i = 0; i < ns; i++) {
 		Text(sx + sw + sw / 2, sy, shapenames[i], SansTypeface, fontsize);
 		sy -= sh * spacing;
