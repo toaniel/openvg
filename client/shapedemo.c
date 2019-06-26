@@ -52,7 +52,7 @@ void gradient(int width, int height) {
 
 	VGfloat stops[] = {
 		0.0, 1, 0, 0, 1.0,
-		0.5, 0, 1, 0, 1.0,
+		0.2, 0, 1, 0, 1.0,
 		1.0, 0, 0, 1, 1.0
 	};
 
@@ -68,7 +68,7 @@ void gradient(int width, int height) {
 	Start(w, h);
 	Background(128, 128, 128);
 
-	FillLinearGradient(x1, y1, x2, y2, stops, 3);
+	FillLinearGradient(x1, (y1 + y2)/2, x2, (y1 + y2)/2, stops, 3);
 	Rect(x1, y1, x2 - x1, y2 - y1);
 	FillRadialGradient(cx, cy, fx, fy, r, stops, 3);
 	Circle(cx, cy, r);
