@@ -554,7 +554,7 @@ void Qbezier(VGfloat sx, VGfloat sy, VGfloat cx, VGfloat cy, VGfloat ex, VGfloat
 }
 
 // interleave interleaves arrays of x, y into a single array
-void interleave(VGfloat * x, VGfloat * y, int n, VGfloat * points) {
+void astark_interleave(VGfloat * x, VGfloat * y, int n, VGfloat * points) {
 	while (n--) {
 		*points++ = *x++;
 		*points++ = *y++;
@@ -565,7 +565,7 @@ void interleave(VGfloat * x, VGfloat * y, int n, VGfloat * points) {
 void poly(VGfloat * x, VGfloat * y, VGint n, VGbitfield flag) {
 	VGfloat points[n * 2];
 	VGPath path = newpath();
-	interleave(x, y, n, points);
+	astark_interleave(x, y, n, points);
 	vguPolygon(path, points, n, VG_FALSE);
 	vgDrawPath(path, flag);
 	vgDestroyPath(path);
