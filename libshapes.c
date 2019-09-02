@@ -224,8 +224,8 @@ void dumpscreen(int w, int h, FILE * fp) {
 Fontinfo SansTypeface, SerifTypeface, MonoTypeface;
 
 // initWindowSize requests a specific window size & position, if not called
-// then init() will open a full screen window.
-// Done this way to preserve the original init() behaviour.
+// then vg_init() will open a full screen window.
+// Done this way to preserve the original vg_init() behaviour.
 void initWindowSize(int x, int y, unsigned int w, unsigned int h) {
 	init_x = x;
 	init_y = y;
@@ -234,7 +234,7 @@ void initWindowSize(int x, int y, unsigned int w, unsigned int h) {
 }
 
 // init sets the system to its initial state
-void init(int *w, int *h) {
+void vg_init(int *w, int *h) {
 	bcm_host_init();
 	memset(state, 0, sizeof(*state));
 	state->window_x = init_x;
