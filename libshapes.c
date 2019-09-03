@@ -640,7 +640,11 @@ void Start(int width, int height) {
 
 // End checks for errors, and renders to the display
 void End() {
-	assert(vgGetError() == VG_NO_ERROR);
+    VGErrorCode e = vgGetError();
+    if(e) {
+        printf("VGErrorCode: %d... Quitting!\n", e);
+        exit(e);
+    }
 	eglSwapBuffers(state->display, state->surface);
 	assert(eglGetError() == EGL_SUCCESS);
 }
