@@ -274,7 +274,7 @@ void vg_init(int *w, int *h) {
 }
 
 // finish cleans up
-void finish() {
+void vg_finish() {
 	unloadfont(SansTypeface.Glyphs, SansTypeface.Count);
 	unloadfont(SerifTypeface.Glyphs, SerifTypeface.Count);
 	unloadfont(MonoTypeface.Glyphs, MonoTypeface.Count);
