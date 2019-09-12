@@ -13,7 +13,7 @@ int main() {
 	char hello1[] = { 'H', 'e', 'j', ',', ' ', 'v', 0xc3, 0xa4, 'r', 'l', 'd', 'e', 'n', 0 };
 	char hello2[] = { 'H', 'e', 'l', 'l', 0xc3, 0xb3, ' ', 'V', 'i', 'l', 0xc3, 0xa1, 'g', 0 };
 	char hello3[] = { 'A', 'h', 'o', 'j', ' ', 's', 'v', 0xc4, 0x95, 't', 'e', 0 };
-	init(&width, &height);				   // Graphics initialization
+	vg_init(&width, &height);				   // Graphics initialization
 
 	Start(width, height);				   // Start the picture
 	Background(0, 0, 0);				   // Black background
@@ -27,6 +27,6 @@ int main() {
 	End();						   // End the picture
 
 	fgets(s, 2, stdin);				   // look at the pic, end with [RETURN]
-	finish();					   // Graphics cleanup
+	vg_finish();					   // Graphics cleanup
 	exit(0);
 }
