@@ -76,7 +76,7 @@ Fontinfo loadfont(const int *Points,
 		const unsigned char *instructions = &Instructions[InstructionIndices[i]];
 		int ic = InstructionCounts[i];
 		VGPath path = vgCreatePath(VG_PATH_FORMAT_STANDARD, VG_PATH_DATATYPE_S_32,
-					   1.0f / 65536.0f, 0.0f, 0, 0,
+					   (1.0f / 65536.0f), 0.0f, 0, 0,
 					   VG_PATH_CAPABILITY_ALL);
 		f.Glyphs[i] = path;
 		if (ic) {
@@ -274,7 +274,7 @@ void vg_init(int *w, int *h) {
 }
 
 // finish cleans up
-void finish() {
+void vg_finish() {
 	unloadfont(SansTypeface.Glyphs, SansTypeface.Count);
 	unloadfont(SerifTypeface.Glyphs, SerifTypeface.Count);
 	unloadfont(MonoTypeface.Glyphs, MonoTypeface.Count);
@@ -357,9 +357,9 @@ void RGBA(unsigned int r, unsigned int g, unsigned int b, VGfloat a, VGfloat col
 	if (a < 0.0 || a > 1.0) {
 		a = 1.0;
 	}
-	color[0] = (VGfloat) r / 255.0f;
-	color[1] = (VGfloat) g / 255.0f;
-	color[2] = (VGfloat) b / 255.0f;
+	color[0] = (VGfloat) r * (1.0f / 255.0f);
+	color[1] = (VGfloat) g * (1.0f / 255.0f);
+	color[2] = (VGfloat) b * (1.0f / 255.0f);
 	color[3] = a;
 }
 
@@ -474,7 +474,7 @@ void Text(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 		vgLoadMatrix(mm);
 		vgMultMatrix(mat);
 		vgDrawPath(f.Glyphs[glyph], VG_FILL_PATH);
-		xx += size * f.GlyphAdvances[glyph] / 65536.0f;
+		xx += size * f.GlyphAdvances[glyph] * ( 1.0f / 65536.0f);
 	}
 	vgLoadMatrix(mm);
 }
@@ -493,7 +493,7 @@ VGfloat TextWidth(const char *s, Fontinfo f, int pointsize) {
 		if (glyph == -1) {
 			continue;			   //glyph is undefined
 		}
-		tw += size * f.GlyphAdvances[glyph] / 65536.0f;
+		tw += size * f.GlyphAdvances[glyph] * ( 1.0f / 65536.0f);
 	}
 	return tw;
 }
@@ -501,7 +501,7 @@ VGfloat TextWidth(const char *s, Fontinfo f, int pointsize) {
 // TextMid draws text, centered on (x,y)
 void TextMid(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 	VGfloat tw = TextWidth(s, f, pointsize);
-	Text(x - (tw / 2.0), y, s, f, pointsize);
+	Text(x - (tw * 0.5f), y, s, f, pointsize);
 }
 
 // TextEnd draws text, with its end aligned to (x,y)
@@ -512,12 +512,12 @@ void TextEnd(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 
 // TextHeight reports a font's height
 VGfloat TextHeight(Fontinfo f, int pointsize) {
-	return (f.font_height * pointsize) / 65536;
+	return (f.font_height * pointsize) * ( 1.0f / 65536.0f);
 }
 
 // TextDepth reports a font's depth (how far under the baseline it goes)
 VGfloat TextDepth(Fontinfo f, int pointsize) {
-	return (-f.descender_height * pointsize) / 65536;
+	return (-f.descender_height * pointsize) * ( 1.0f / 65536.0f);
 }
 
 //
