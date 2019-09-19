@@ -234,7 +234,7 @@ void initWindowSize(int x, int y, unsigned int w, unsigned int h) {
 }
 
 // init sets the system to its initial state
-void vg_init(int *w, int *h) {
+STATE_T * vg_init(int *w, int *h) {
 	bcm_host_init();
 	memset(state, 0, sizeof(*state));
 	state->window_x = init_x;
@@ -271,6 +271,8 @@ void vg_init(int *w, int *h) {
 
 	*w = state->window_width;
 	*h = state->window_height;
+
+	return state;
 }
 
 // finish cleans up

@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
 	setOptions(argc, argv);
 
 	int w, h;
-	init(&w, &h);
+	vg_init(&w, &h);
 	initParticles(w, h);
 
 	Start(w, h);

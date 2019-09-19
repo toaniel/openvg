@@ -10,8 +10,8 @@
 
 int main() {
 	int width, height;
-	init(&width, &height);				   // Graphics initialization
+	vg_init(&width, &height);				   // Graphics initialization
 	printf("%d %d\n", width, height);
-	finish();					   // Graphics cleanup
+	vg_finish();					   // Graphics cleanup
 	exit(0);
 }
