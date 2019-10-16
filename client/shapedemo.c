@@ -633,7 +633,7 @@ int main(int argc, char **argv) {
 	    "%s [command]\n\tdemo sec\n\tastro\n\ttest ...\n\trand n\n\trotate n ...\n\timage\n\ttext\n\tfontsize\n\traspi\n\tadvert\n\tgradient\n";
 	char *progname = argv[0];
 	saveterm();
-	init(&w, &h);
+	vg_init(&w, &h);
 	rawterm();
 	switch (argc) {
 	case 2:
@@ -693,6 +693,6 @@ int main(int argc, char **argv) {
 	}
 	waituntil(0x1b);
 	restoreterm();
-	finish();
+	vg_finish();
 	return 0;
 }

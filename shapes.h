@@ -28,8 +28,8 @@ extern "C" {
 	extern void SaveEnd(const char *);
 	extern void Background(unsigned int, unsigned int, unsigned int);
 	extern void BackgroundRGB(unsigned int, unsigned int, unsigned int, VGfloat);
-	extern void init(int *, int *);
-	extern void finish();
+	extern STATE_T * vg_init(int *, int *);
+	extern void vg_finish();
 	extern void setfill(VGfloat[4]);
 	extern void setstroke(VGfloat[4]);
 	extern void StrokeWidth(VGfloat);
