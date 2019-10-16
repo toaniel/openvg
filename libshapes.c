@@ -460,7 +460,7 @@ void Text(VGfloat x, VGfloat y, const char *s, Fontinfo f, int pointsize) {
 	unsigned char *ss = (unsigned char *)s;
 	while ((ss = next_utf8_char(ss, &character)) != NULL) {
 		int glyph = f.CharacterMap[character];
-		if (character >= MAXFONTPATH-1) {
+		if (character >= MAXFONTPATH - 1) {
 			continue;
 		}
 		if (glyph == -1) {
@@ -487,7 +487,7 @@ VGfloat TextWidth(const char *s, Fontinfo f, int pointsize) {
 	unsigned char *ss = (unsigned char *)s;
 	while ((ss = next_utf8_char(ss, &character)) != NULL) {
 		int glyph = f.CharacterMap[character];
-		if (character >= MAXFONTPATH-1) {
+		if (character >= MAXFONTPATH - 1) {
 			continue;
 		}
 		if (glyph == -1) {

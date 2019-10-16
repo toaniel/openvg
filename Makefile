@@ -6,16 +6,16 @@ FONTFILES=DejaVuSans.inc  DejaVuSansMono.inc DejaVuSerif.inc
 all:	font2openvg fonts library	
 
 libshapes.o:	libshapes.c shapes.h fontinfo.h fonts
-	gcc -O2 -Wall $(INCLUDEFLAGS) -c libshapes.c
+	gcc -Ofast -Wall $(INCLUDEFLAGS) -c libshapes.c
 
 gopenvg:	openvg.go
 	go install .
 
 oglinit.o:	oglinit.c
-	gcc -O2 -Wall $(INCLUDEFLAGS) -c oglinit.c
+	gcc -Ofast -Wall $(INCLUDEFLAGS) -c oglinit.c
 
 font2openvg:	fontutil/font2openvg.cpp
-	g++ -I/usr/include/freetype2 fontutil/font2openvg.cpp -o font2openvg -lfreetype
+	g++ -Ofast -I/usr/include/freetype2 fontutil/font2openvg.cpp -o font2openvg -lfreetype
 
 fonts:	$(FONTFILES)
 
